@@ -4,30 +4,87 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function viewlogin()
     {
-        return view('auth.login');
+        if (Auth::check()) {
+            return redirect('/Dashboard');
+        } else {
+            return view('auth.login');
+        }
     }
 
+    public function actionLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('Dashboard');
+        }
+
+        return back()->withErrors('The provided credentials do not match our records.')->onlyInput('email');
+
+    }
+
+    public function actionLogout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/Login');
+    }
+
+    //Registrasi
     public function viewregister()
     {
-        return view('auth.register');
+        if (Auth::check()) {
+            return redirect('/Dashboard');
+        } else {
+            return view('auth.register');
+        }
     }
 
-    public function sendRegister(Request $request)
+    public function actionRegister(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|unique:users',
-            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-            // 'password_confirmation' => 'min:6'
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'nama_kantor' => 'required|string',
+            'alamat_kantor' => 'required|string',
+            'kontak' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|string',
         ]);
-        $validatedData['password'] = Hash::make($validatedData['password']);
-        User::create($validatedData);
-        return redirect('/Dashboard')->with('success', 'Registration Succesfull!');
+
+        if($validator->fails()){
+            return response()->json(["error" => $validator->messages()], 422);
+        }
+
+       $user = User::create([
+        'name' => $request->name,
+        'nama_kantor' => $request->nama_kantor,
+        'alamat_kantor' => $request->alamat_kantor,
+        'kontak' => $request->kontak,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+       ]);
+
+       if($user){
+           return redirect()->route('Login')->with('success', 'Registration success.');
+       }else{
+            return back()->withErrors("Gagal Cok");
+       }
+
     }
 }

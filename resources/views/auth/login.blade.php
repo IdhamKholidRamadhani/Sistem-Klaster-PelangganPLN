@@ -20,35 +20,60 @@
             <img src="{{ asset('assets') }}/img/bg-electric.png" alt="" srcset="" class="absolute w-full">
         </div>
         <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
-            <form class="bg-white">
-                <img src="{{ asset('assets') }}/img/electric.png" alt="logo" width="130px" height="130px"
+
+            <form class="bg-white" action="/ActionLogin" method="POST">
+                @csrf
+                <img src="{{ asset('assets') }}/img/electric.png" alt="logo" width="100px" height="100px"
                     class="mb-3">
                 <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello!</h1>
                 <p class="text-sm font-normal text-gray-600 mb-7">Implementasi Data Mining Menentukan Kelompok Pelanggan
                     Listrik Subsidi</p>
-                <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        class="bi bi-person h-5 w-5 text-gray-400" viewBox="0 0 16 16">
-                        <path
-                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
-                    </svg>
-                    <input class="pl-2 outline-none border-none" type="text" name="" id=""
-                        placeholder="Email Address" />
+
+                @if (session('error'))
+                    <div id="alert-1" class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div>
+                            <span class="font-medium">Maaf,</span> {{ session('error') }}
+                        </div>
+                        <button type="button"
+                            class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8"
+                            data-dismiss-target="#alert-1" aria-label="Close">
+                            <span class="sr-only">Close</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                @endif
+
+                <div class="mb-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                    <input type="text" name="email" id="email"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Email Address" required>
                 </div>
-                <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        class="bi bi-person-lock h-5 w-5 text-gray-400" viewBox="0 0 16 16">
-                        <path
-                            d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 5.996V14H3s-1 0-1-1 1-4 6-4c.564 0 1.077.038 1.544.107a4.524 4.524 0 0 0-.803.918A10.46 10.46 0 0 0 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h5ZM9 13a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2Zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1Z" />
-                    </svg>
-                    <input class="pl-2 outline-none border-none" type="password" name="" id=""
-                        placeholder="Password" />
+                <div class="mb-6">
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                    <input type="password" name="password" id="password"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Password" required>
                 </div>
+
                 <button type="submit"
-                    class="block w-full bg-gradient-to-tl from-purple-700 to-pink-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Login</button>
+                    class="block w-full bg-gradient-to-tl from-purple-700 to-pink-500 py-2 rounded-2xl text-white font-semibold mb-2">Login</button>
                 <a href="/Register" type="button"
                     class="block w-full rounded-2xl text-gray-500 text-sm mb-2 items-center text-center">Registrasi</a>
             </form>
+
         </div>
     </div>
 </body>

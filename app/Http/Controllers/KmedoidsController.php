@@ -54,13 +54,13 @@ class KmedoidsController extends Controller
             return $item;
         });
 
-        if($medoid['titik1']->daya_pelanggan_raw === 'Ya'){ //Titik1
+        if($medoid['titik1']->sktm_pelanggan_raw === 'Ya'){ //Titik1
             $medoid['titik1']->sktm_pelanggan_raw_convert = 1;
         }else{
             $medoid['titik1']->sktm_pelanggan_raw_convert = 0;
         }
 
-        if($medoid['titik2']->daya_pelanggan_raw === 'Ya'){ //Titik2
+        if($medoid['titik2']->sktm_pelanggan_raw === 'Ya'){ //Titik2
             $medoid['titik2']->sktm_pelanggan_raw_convert = 1;
         }else{
             $medoid['titik2']->sktm_pelanggan_raw_convert = 0;

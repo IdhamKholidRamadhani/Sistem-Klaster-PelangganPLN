@@ -63,23 +63,23 @@
                     <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
                         <div class="flex items-center space-x-4">
                             <div class="text-xs text-grey-800">
-                                <div>User Administrator </div>
+                                <div>{{ Auth::user()->name }} </div>
                             </div>
                             <div class="inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-200 rounded-full"
                                 data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start">
-                                <span class="font-medium text-gray-600">JL</span>
+                                <span class="font-medium text-gray-600"><img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" alt="foto"></span>
                             </div>
                             <div id="userDropdown"
                                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                     aria-labelledby="avatarButton">
                                     <li>
-                                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                        <a href="/Profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                                             <i class="fa fa-user-circle-o mr-2" aria-hidden="true"></i>Profile</a>
                                     </li>
                                 </ul>
                                 <div class="py-1">
-                                    <a href="/Login" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <a href="/ActionLogout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                         <i class="fa fa-sign-out fa-flip-horizontal mr-2" aria-hidden="true"></i>Sign
                                         out</a>
                                 </div>

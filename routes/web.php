@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Kmedoids2Controller;
 use App\Http\Controllers\KmedoidsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RawDataController;
 use App\Http\Controllers\KnnController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResultController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,28 +27,40 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[PageController::class, 'index']);
 
 //Auth
-Route::get('Login',[AuthController::class,'viewlogin']);
+Route::get('Login',[AuthController::class,'viewlogin'])->name('Login');
+Route::post('ActionLogin',[AuthController::class,'actionLogin'])->name('actionlogin');
+
 Route::get('Register',[AuthController::class,'viewregister']);
-Route::post('Send-Register', [RegisterController::class, 'sendRegister']);
+Route::post('ActionRegister', [AuthController::class, 'actionRegister'])->name('actionRegister');
 
-//Dash
-Route::get('Dashboard',[DashboardController::class, 'dashboard']);
+Route::middleware(['auth'])->group(function () {
+    //Dash
+    Route::get('Dashboard',[DashboardController::class, 'dashboard']);
+    Route::get('Profile',[ProfileController::class,'viewProfile']);
 
-//Upload
-Route::get('Upload-Data-Raw',[RawDataController::class, 'viewUpload']);
-Route::post('Import-File-Raw',[RawDataController::class, 'uploadFile']);
-Route::post('Import-Data-Raw',[RawDataController::class, 'uploadData']);
-Route::get('Table-Raw',[RawDataController::class,'datatable']);
-Route::get('Data-Raw',[RawDataController::class, 'viewData'])->name('Data-Raw');
+    //Upload
+    Route::get('Upload-Data-Raw',[RawDataController::class, 'viewUpload']);
+    Route::post('Import-File-Raw',[RawDataController::class, 'uploadFile']);
+    Route::post('Import-Data-Raw',[RawDataController::class, 'uploadData']);
+    Route::get('Table-Raw',[RawDataController::class,'datatable']);
+    Route::get('Data-Raw',[RawDataController::class, 'viewData'])->name('Data-Raw');
 
-//Proses Hitung KMedoids
-// Route::get('Titik-Klaster',[KmedoidsController::class, 'median']);
-Route::get('Hasil-Klaster',[KmedoidsController::class, 'viewTableKlaster'])->name('Hasil-Klaster');
+    //Proses Hitung KMedoids
+    Route::get('Hasil-Klaster',[KmedoidsController::class, 'viewTableKlaster'])->name('Hasil-Klaster');
 
-//Knn
-Route::get('Data-Result/Tambah-Data-Baru',[KnnController::class, 'viewFormKNN']);
+    //Knn
+    Route::get('Data-Result/Tambah-Data-Baru',[KnnController::class, 'viewFormKNN']);
 
-//Hasil
-Route::post('Data-From-Raw',[ResultController::class, 'DataTable_from_dataRaw']);
-Route::get('Data-Result',[ResultController::class, 'viewResult']);
-Route::get('Result',[ResultController::class,'viewDataResult'])->name('Result');
+    //Hasil
+    Route::post('Data-From-Raw',[ResultController::class, 'DataTable_from_dataRaw']);
+    Route::get('Data-Result',[ResultController::class, 'viewResult']);
+    Route::get('Result',[ResultController::class,'viewDataResult'])->name('Result');
+
+    Route::post('ActionLogout',[AuthController::class,'actionLogout'])->name('Logout');
+});
+
+
+// Auth::routes();
+
+//test
+Route::get('Test-Hasil-Klaster',[Kmedoids2Controller::class, 'kMedoid']);
