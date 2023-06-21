@@ -9,16 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    // public function viewForm()
-    // {
-    //     return view('content.static.profile');
-    // }
-
     public function viewProfile()
     {
         $data = User::all();
-        //      ->where('id', $id)
-        //      ->get();
         return view('content.static.profile',compact('data'));
     }
 
