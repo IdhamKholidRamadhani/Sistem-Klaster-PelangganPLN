@@ -19,11 +19,11 @@
                 <h6 class="pl-6 ml-2 text-sm text-gray-400 font-extralight leading-tight">Dashboard</h6>
             </li>
             <li class="mt-2 w-full">
-                <a class="{{ request()->is('Dashboard') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                <a class="{{ request()->is('Dashboard','Profile') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                     href="/Dashboard">
                     <div
-                        class="{{ request()->is('Dashboard') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                        <i class="fa fa-th-large {{ request()->is('Dashboard') ? 'text-white' : '' }}" aria-hidden="true"></i>
+                        class="{{ request()->is('Dashboard','Profile') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        <i class="fa fa-th-large {{ request()->is('Dashboard','Profile') ? 'text-white' : '' }}" aria-hidden="true"></i>
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Dashboard</span>
                 </a>

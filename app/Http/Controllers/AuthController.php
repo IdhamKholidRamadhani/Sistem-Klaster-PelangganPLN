@@ -32,8 +32,7 @@ class AuthController extends Controller
             return redirect()->intended('Dashboard');
         }
 
-        return back()->with('error','Login Gagal')->onlyInput('email');
-
+        return back()->with('error', 'Login Gagal')->onlyInput('email');
     }
 
     public function actionLogout(Request $request)
@@ -67,24 +66,23 @@ class AuthController extends Controller
             'password' => 'required|confirmed|string',
         ]);
 
-        if($validator->fails()){
-            return back()->with('error','Registrasi Gagal');
+        if ($validator->fails()) {
+            return back()->with('error', 'Registrasi Gagal');
         }
 
-       $user = User::create([
-        'name' => $request->name,
-        'nama_kantor' => $request->nama_kantor,
-        'alamat_kantor' => $request->alamat_kantor,
-        'kontak' => $request->kontak,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-       ]);
+        $user = User::create([
+            'name' => $request->name,
+            'nama_kantor' => $request->nama_kantor,
+            'alamat_kantor' => $request->alamat_kantor,
+            'kontak' => $request->kontak,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-       if($user){
-           return redirect()->route('Login')->with('success', 'Registrasi Berhasil.');
-       }else{
-            return back()->with('error','Registrasi Gagal');
-       }
-
+        if ($user) {
+            return redirect()->route('Login')->with('success', 'Registrasi Berhasil.');
+        } else {
+            return back()->with('error', 'Registrasi Gagal');
+        }
     }
 }

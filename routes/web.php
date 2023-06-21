@@ -36,7 +36,9 @@ Route::post('ActionRegister', [AuthController::class, 'actionRegister'])->name('
 Route::middleware(['auth'])->group(function () {
     //Dash
     Route::get('Dashboard',[DashboardController::class, 'dashboard']);
+    // Route::get('Profile',[ProfileController::class,'viewForm']);
     Route::get('Profile',[ProfileController::class,'viewProfile']);
+    Route::post('Update-Profile/{id}',[ProfileController::class,'updateProfile']);
 
     //Upload
     Route::get('Upload-Data-Raw',[RawDataController::class, 'viewUpload']);
@@ -58,9 +60,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('ActionLogout',[AuthController::class,'actionLogout'])->name('Logout');
 });
-
-
-// Auth::routes();
 
 //test
 Route::get('Test-Hasil-Klaster',[Kmedoids2Controller::class, 'kMedoid']);

@@ -79,10 +79,14 @@
                                     </li>
                                 </ul>
                                 <div class="py-1">
-                                    <a href="/ActionLogout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <a href="/ActionLogout"  onclick="event.preventDefault(); document.getElementById('demo').submit();"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                         <i class="fa fa-sign-out fa-flip-horizontal mr-2" aria-hidden="true"></i>Sign
                                         out</a>
                                 </div>
+                                <form action="/ActionLogout" method="POST" id="demo">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
                         <li class="flex items-center pl-4 xl:hidden">
