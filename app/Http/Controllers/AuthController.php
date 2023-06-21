@@ -32,7 +32,7 @@ class AuthController extends Controller
             return redirect()->intended('Dashboard');
         }
 
-        return back()->withErrors('The provided credentials do not match our records.')->onlyInput('email');
+        return back()->with('error','Login Gagal')->onlyInput('email');
 
     }
 
@@ -68,7 +68,7 @@ class AuthController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json(["error" => $validator->messages()], 422);
+            return back()->with('error','Registrasi Gagal');
         }
 
        $user = User::create([
@@ -81,9 +81,9 @@ class AuthController extends Controller
        ]);
 
        if($user){
-           return redirect()->route('Login')->with('success', 'Registration success.');
+           return redirect()->route('Login')->with('success', 'Registrasi Berhasil.');
        }else{
-            return back()->withErrors("Gagal Cok");
+            return back()->with('error','Registrasi Gagal');
        }
 
     }
