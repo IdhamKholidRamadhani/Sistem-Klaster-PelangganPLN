@@ -16,6 +16,7 @@ class ResultController extends Controller
             'acceptToSaveData' => 'required|string',
         ]);
         if ($request->acceptToSaveData === 'acceptToSaveData') {
+            DataResultCluster::truncate();
             $data = KmedoidsController::kMedoid();
             // DataResultCluster::createMany($data->data);
             foreach ($data as $d) {

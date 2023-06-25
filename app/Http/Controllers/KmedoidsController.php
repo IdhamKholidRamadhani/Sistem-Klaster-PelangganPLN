@@ -44,7 +44,7 @@ class KmedoidsController extends Controller
 
     public static function euclidean($data, $medoid)
     {
-        //Normalisasi data SKTM
+        //ubah value data SKTM
         $dataConvert = $data->transform(function ($item) {
             if ($item->sktm_pelanggan_raw === 'Ya') {
                 $item->sktm_pelanggan_raw_convert = 1;
@@ -74,16 +74,16 @@ class KmedoidsController extends Controller
 
         foreach ($dataConvert as $datas) {
             $eu1 = sqrt(
-                pow($datas->penghasilan_pelanggan_raw - $medoid['titik1']->penghasilan_pelanggan_raw, 2) +
-                    pow($datas->tanggungan_pelanggan_raw - $medoid['titik1']->tanggungan_pelanggan_raw, 2) +
-                    pow($datas->daya_pelanggan_raw - $medoid['titik1']->daya_pelanggan_raw, 2) +
-                    pow($datas->sktm_pelanggan_raw_convert - $medoid['titik1']->sktm_pelanggan_raw_convert, 2)
+                pow($medoid['titik1']->penghasilan_pelanggan_raw - $datas->penghasilan_pelanggan_raw, 2) +
+                    pow($medoid['titik1']->tanggungan_pelanggan_raw - $datas->tanggungan_pelanggan_raw, 2) +
+                    pow($medoid['titik1']->daya_pelanggan_raw - $datas->daya_pelanggan_raw, 2) +
+                    pow($medoid['titik1']->sktm_pelanggan_raw_convert - $datas->sktm_pelanggan_raw_convert, 2)
             );
             $eu2 = sqrt(
-                pow($datas->penghasilan_pelanggan_raw - $medoid['titik2']->penghasilan_pelanggan_raw, 2) +
-                    pow($datas->tanggungan_pelanggan_raw - $medoid['titik2']->tanggungan_pelanggan_raw, 2) +
-                    pow($datas->daya_pelanggan_raw - $medoid['titik2']->daya_pelanggan_raw, 2) +
-                    pow($datas->sktm_pelanggan_raw_convert - $medoid['titik2']->sktm_pelanggan_raw_convert, 2)
+                pow($medoid['titik2']->penghasilan_pelanggan_raw - $datas->penghasilan_pelanggan_raw, 2) +
+                    pow($medoid['titik2']->tanggungan_pelanggan_raw - $datas->tanggungan_pelanggan_raw, 2) +
+                    pow($medoid['titik2']->daya_pelanggan_raw - $datas->daya_pelanggan_raw, 2) +
+                    pow($medoid['titik2']->sktm_pelanggan_raw_convert - $datas->sktm_pelanggan_raw_convert, 2)
             );
 
             if ($eu1 < $eu2) {
@@ -116,21 +116,21 @@ class KmedoidsController extends Controller
         ]; //Panggil titik median2
 
 
-        $DataSubsidi =  $data->filter(function ($item) {
-            return $item->daya_pelanggan_raw == 450;
-        });
+        // $DataSubsidi =  $data->filter(function ($item) {
+        //     return $item->daya_pelanggan_raw == 450;
+        // });
 
-        $DataCekSubsidi = $data->filter(function ($item) {
-            return $item->daya_pelanggan_raw > 450;
-        });
+        // $DataCekSubsidi = $data->filter(function ($item) {
+        //     return $item->daya_pelanggan_raw > 450;
+        // });
 
         // return response()->json(["data" => $DataSubsidi], 200);
 
         // dd($DataCekSubsidi);
 
 
-        $euclidean1 = KmedoidsController::euclidean($DataCekSubsidi, $medoid_1);
-        $euclidean2 = KmedoidsController::euclidean($DataCekSubsidi, $medoid_2);
+        $euclidean1 = KmedoidsController::euclidean($data, $medoid_1);
+        $euclidean2 = KmedoidsController::euclidean($data, $medoid_2);
 
         $simpangan_baku = $euclidean2->jumlah - $euclidean1->jumlah; // S = b-a
 
@@ -140,9 +140,9 @@ class KmedoidsController extends Controller
                 array_push($HasilCekSubsidi, $item['no_pelanggan_raw']);
             }
 
-            foreach($DataSubsidi as $ds){
-                array_push($HasilCekSubsidi, $ds->no_pelanggan_raw);
-            }
+            // foreach($DataSubsidi as $ds){ //Data 450
+            //     array_push($HasilCekSubsidi, $ds->no_pelanggan_raw);
+            // }
 
             foreach($data as $d){
                 if(in_array($d->no_pelanggan_raw, $HasilCekSubsidi)){
@@ -155,6 +155,12 @@ class KmedoidsController extends Controller
                     $d->kategori = "Non Subsidi";
                 }
             }
+            $DataSubsidi =  $data->filter(function ($item) {
+                // return $item->daya_pelanggan_raw == 450;
+                if($item->daya_pelanggan_raw == 450){
+                    $item->kategori = "Subsidi";
+                }
+            });
         }
         return $data;
 

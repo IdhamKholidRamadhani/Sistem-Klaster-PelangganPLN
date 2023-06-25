@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Knn
     Route::get('Data-Result/Tambah-Data-Baru',[KnnController::class, 'viewFormKNN']);
+    Route::post('Proses-Prediksi',[KnnController::class, 'knn'])->name('Proses-Prediksi');
 
     //Hasil
     Route::post('Data-From-Raw',[ResultController::class, 'DataTable_from_dataRaw']);
@@ -63,3 +64,4 @@ Route::middleware(['auth'])->group(function () {
 
 //test
 Route::get('Test-Hasil-Klaster',[Kmedoids2Controller::class, 'kMedoid']);
+Route::get('Test-MinMax',[Kmedoids2Controller::class, 'median']);

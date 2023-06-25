@@ -17,18 +17,18 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'nama_kantor' => 'required|string',
-            'alamat_kantor' => 'required|string',
-            'kontak' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|string',
-        ]);
+        // $this->validate($request, [
+        //     'name' => 'required|string',
+        //     'nama_kantor' => 'required|string',
+        //     'alamat_kantor' => 'required|string',
+        //     'kontak' => 'required|string',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'required|confirmed|string',
+        // ]);
 
-        if ($request->fails()) {
-            return back()->with('error', 'Update Gagal');
-        }
+        // if ($request->fails()) {
+        //     return back()->with('error', 'Update Gagal');
+        // }
 
         $data = [
             'name' => $request->name,
