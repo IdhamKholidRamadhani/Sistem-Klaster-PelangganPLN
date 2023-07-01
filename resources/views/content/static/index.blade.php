@@ -9,7 +9,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Today's Money</p>
+                                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Jumlah Data</p>
                                 <h5 class="mb-0 font-bold">
                                     $53,000
                                     <span class="text-sm leading-normal font-weight-bolder text-lime-500">+55%</span>
@@ -19,7 +19,7 @@
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                                <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                                <i class="fa fa-users leading-none text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Today's Users</p>
+                                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Jumlah Desa</p>
                                 <h5 class="mb-0 font-bold">
                                     2,300
                                     <span class="text-sm leading-normal font-weight-bolder text-lime-500">+3%</span>
@@ -44,7 +44,7 @@
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                                <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
+                                <i class="fa fa-address-book leading-none text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-sans text-sm font-semibold leading-normal">New Clients</p>
+                                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Subsidi</p>
                                 <h5 class="mb-0 font-bold">
                                     +3,462
                                     <span class="text-sm leading-normal text-red-600 font-weight-bolder">-2%</span>
@@ -69,7 +69,7 @@
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                                <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white"></i>
+                                <i class="fa fa-user leading-none text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                     <div class="flex flex-row -mx-3">
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
-                                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Sales</p>
+                                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Non Subsidi</p>
                                 <h5 class="mb-0 font-bold">
                                     $103,430
                                     <span class="text-sm leading-normal font-weight-bolder text-lime-500">+5%</span>
@@ -94,7 +94,7 @@
                         <div class="px-3 text-right basis-1/3">
                             <div
                                 class="inline-block w-12 h-12 text-center rounded-lg bg-gradient-to-tl from-purple-700 to-pink-500">
-                                <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white"></i>
+                                <i class="fa fa-user leading-none text-lg relative top-3.5 text-white"></i>
                             </div>
                         </div>
                     </div>

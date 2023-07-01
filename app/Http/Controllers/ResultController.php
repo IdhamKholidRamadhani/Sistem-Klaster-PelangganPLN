@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Datatables\DatatablesController;
+use App\Exports\ExcelExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\KmedoidsController;
 use App\Models\DataResultCluster;
+// use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Exception;
+use PDF;
+use Illuminate\Support\Facades\App;
+// use Knp\Snappy\Pdf as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class ResultController extends Controller
 {
@@ -56,5 +63,19 @@ class ResultController extends Controller
         } catch (Exception $e) {
             return back()->withErrors($e->getMessage());
         }
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ExcelExport, 'Data-Pelanggan-PLN.xlsx');
+    }
+
+    public function exportPDF()
+    {
+        $data = DataResultCluster::get();
+        $pdf = PDF::loadView('landing_page.pdf', compact('data'));
+        $pdf->setOption('enable-local-file-access', true);
+        return $pdf->stream();
+        // return view('landing_page.pdf', compact('data'));
     }
 }

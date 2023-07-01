@@ -16,19 +16,18 @@ class DatatablesController extends Controller
 {
     public static function view($data)
     {
-         if ($data) {
+        if ($data) {
             return DataTables::of($data)->addIndexColumn()
                 ->make(true);
-
         }
-         throw new Exception('gagal menampilkan data');
+        throw new Exception('gagal menampilkan data');
     }
 
     public static function import($path)
     {
-        if($up = Excel::import(new ExcelImport, $path)){
+        if ($up = Excel::import(new ExcelImport, $path)) {
             return $up;
         }
-         throw new Exception('gagal upload data');
+        throw new Exception('gagal upload data');
     }
 }

@@ -25,7 +25,7 @@
                 @csrf
                 <img src="{{ asset('assets') }}/img/electric.png" alt="logo" width="100px" height="100px"
                     class="mb-3">
-                <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello!</h1>
+                <h1 class="text-gray-800 font-bold text-2xl mb-1">Login,</h1>
                 <p class="text-sm font-normal text-gray-600 mb-7">Implementasi Data Mining Menentukan Kelompok Pelanggan
                     Listrik Subsidi</p>
 

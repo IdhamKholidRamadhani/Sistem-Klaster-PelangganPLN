@@ -19,26 +19,25 @@ class RawDataController extends Controller
     public function uploadFile(Request $request) //Data ke storage
     {
         try {
-            $file = $request->file('file');
-            //Menghapus all data
+            $file = $request->file('file'); //Menghapus all data
             DataRaw::truncate();
-
             if(Storage::get('/public/fileRaw/data_raw.xlsx')){
                 Storage::delete('/public/fileRaw/data_raw.xlsx');
             }
             //Menyimpan data raw ke public storage
             $path = Storage::putFileAs('public/fileRaw', $file, 'data_raw.xlsx');
-
             //Respon berhasil
             return response()->json(['path' => $path], 200);
         } catch (Exception $e) {
-            return response()->json(['message' => 'Gagal tersimpan di storage'], 200); //Respon gagal
+            //Respon gagal
+            return response()->json(['message' => 'Gagal tersimpan di storage'], 200);
         }
     }
 
     public function uploadData(Request $request) //Data ke database
     {
-        if (DatatablesController::import($request->path)) { //kondisi request file
+        //kondisi request file
+        if (DatatablesController::import($request->path)) {
             //Jika berhasil terupload ke database
             return redirect('/Table-Raw')->withSuccess('Data berhasil tersimpan di database');
         }

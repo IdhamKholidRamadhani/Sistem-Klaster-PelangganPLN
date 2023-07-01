@@ -42,10 +42,30 @@
                         <i class="fa fa-user-plus mr-2" aria-hidden="true"></i>
                         Tambah Data
                     </a>
-                    <a href="#" type="button"
+
+                    <a type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                        Print
+                        <i class="fa fa-download mr-2" aria-hidden="true"></i>
+                        Cetak
                     </a>
+                    <div id="dropdown"
+                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-30">
+                        <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href="/Export-Excel"
+                                    class="block px-4 py-2 hover:bg-gray-100">
+                                    <i class="fa fa-file-excel-o mr-1" aria-hidden="true"></i>
+                                    Excel</a>
+                            </li>
+                            <li>
+                                <a href="/Export-PDF"
+                                    class="block px-4 py-2 hover:bg-gray-100">
+                                    <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i>
+                                    PDF</a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="overflow-x-auto p-7">

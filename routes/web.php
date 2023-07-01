@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 // Landing Page
 Route::get('/',[PageController::class, 'index']);
+Route::post('/Cari',[PageController::class, 'search']);
 
 //Auth
 Route::get('Login',[AuthController::class,'viewlogin'])->name('Login');
@@ -58,6 +59,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('Data-From-Raw',[ResultController::class, 'DataTable_from_dataRaw']);
     Route::get('Data-Result',[ResultController::class, 'viewResult']);
     Route::get('Result',[ResultController::class,'viewDataResult'])->name('Result');
+    Route::get('Export-Excel',[ResultController::class,'exportExcel']);
+    Route::get('Export-PDF',[ResultController::class,'exportPDF']);
 
     Route::post('ActionLogout',[AuthController::class,'actionLogout'])->name('Logout');
 });

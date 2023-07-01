@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
     <title>Implementasi Data Mining Menentukan Kelompok Pelanggan Listrik Subsidi Atau Non Subsidi</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/electric.png" />
 </head>
 
 <body>
@@ -21,7 +22,7 @@
                 <span class="ml-3 text-xl">Cek Penerimaan Subsidi Listrik</span>
             </a>
             <nav
-                class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-center text-base justify-center">
+                class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex flex-wrap items-center text-base justify-center">
                 <p>Implementasi Data Mining Menentukan Kelompok Pelanggan Listrik Subsidi Atau Non Subsidi</p>
             </nav>
         </div>
@@ -29,66 +30,41 @@
 
     <section
         class="text-gray-400 bg-[url('{{ asset('assets') }}/img/pln2.png')] body-font bg-no-repeat bg-cover bg-center">
-        <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
+        <div class="container mx-auto flex flex-col px-5 pt-24 pb-24 justify-center items-center">
             <div class="w-full md:w-2/3 flex flex-col mb-16 items-center text-center">
                 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Cek Penerimaan Subsidi Listrik
                 </h1>
                 <p class="mb-8 leading-relaxed text-white">Pelanggan yang memperoleh bantuan dari pemerintah masuk dalam
-                    kategori pelanggan subsidi, sedangkan di luar itu merupakan pelanggan nonsubsidi. Sesuai dengan
-                    Pasal 2 ayat 1 Peraturan Menteri ESDM Nomor 29 Tahun 2016, bantuan subsidi tarif listrik untuk rumah
-                    tangga melalui PLN diberikan kepada pelanggan rumah tangga dengan daya 450 volt ampere (VA) dan 900
-                    VA yang termasuk dalam masyarakat prasejahtera serta sudah dalam Data Terpadu Kesejahteraan Sosial
-                    (DTKS).
+                    kategori pelanggan subsidi, sedangkan di luar itu merupakan pelanggan nonsubsidi.
                 </p>
                 <div class="flex w-full justify-center items-end">
                     <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
-                        <label for="hero-field" class="leading-7 text-sm text-gray-400">Cek ID Pel</label>
-                        <input type="text" id="hero-field" name="hero-field"
-                            class="w-full bg-gray-800 rounded border bg-opacity-40 border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <form action="/Cari" method="post">
+                            <label for="search" class="leading-7 text-sm text-gray-400">Cek ID Pel</label>
+                            <input type="text" id="search" name="search"
+                                class="w-full bg-gray-800 rounded border bg-opacity-40 border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </form>
                     </div>
-                    {{-- <button type="button" data-modal-target="defaultModal" data-modal-toggle="defaultModal"
-                        class="block inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Cari
-                        ID Pel
-                    </button> --}}
-                    <button data-modal-target="defaultModal" data-modal-toggle="defaultModal"
-                        class="block inline-flex text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-lg px-6 py-2 text-center"
+                    <button id="defaultModal"
+                        class="block inline-flex font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-lg px-6 py-2 text-center"
                         type="button">
-                        Cari ID Pel
+                        Cari
                     </button>
                 </div>
 
-                <!-- Main modal -->
-                <div id="defaultModal" tabindex="-1" aria-hidden="true"
-                    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-2xl max-h-full">
-                        <!-- Modal content -->
-                        <div class="relative bg-white rounded-lg shadow">
-                            <!-- Modal header -->
-                            <div class="flex items-start justify-between p-4 border-b rounded-t">
-                                <h3 class="text-xl font-semibold text-gray-900">
-                                    Data ID Pelanggan
-                                </h3>
-                                <button type="button"
-                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                                    data-modal-hide="defaultModal">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="p-6 space-y-6">
-                                <p class="text-base leading-relaxed text-gray-500">
-                                    With less than a month to go before the European Union enacts new consumer privacy
-                                    laws for its citizens, companies around the world are updating their terms of
-                                    service agreements to comply.
-                                </p>
-                            </div>
-                        </div>
+                <div id="modal" class="hidden w-full bg-white border border-gray-200 rounded-lg shadow mt-8">
+                    <div class="p-4 bg-white rounded-lg md:p-8">
+                        <h5 class="mb-3 text-xl font-extrabold tracking-tight text-gray-900">
+                            ID Pelanggan</h5>
+                        <p class="mb-3 text-gray-500">
+                            {{-- @foreach ($data as $d)
+                                {{ $d->nama_pelanggan_result }}.
+                            @endforeach --}}
+                        </p>
+                        <button type="button" id="close"
+                            class="py-2.5 px-5 mr-2 text-sm text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">
+                            Tutup
+                        </button>
                     </div>
                 </div>
 
@@ -146,3 +122,17 @@
 </body>
 
 </html>
+
+<script>
+    var modal = document.getElementById("modal");
+    var btn = document.getElementById("defaultModal");
+    var close = document.getElementById("close");
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    close.onclick = function() {
+        modal.style.display = "none";
+    }
+</script>
