@@ -62,6 +62,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('Export-Excel',[ResultController::class,'exportExcel']);
     Route::get('Export-PDF',[ResultController::class,'exportPDF']);
 
+    Route::get('Chart-Admin', [DashboardController::class, 'chartData']);
+
     Route::post('ActionLogout',[AuthController::class,'actionLogout'])->name('Logout');
 });
 
