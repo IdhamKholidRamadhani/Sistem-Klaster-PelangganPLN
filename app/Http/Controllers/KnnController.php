@@ -95,7 +95,6 @@ class KnnController extends Controller
         $dataResult = DataResultCluster::create($data);
 
         if ($dataResult) {
-            // return response()->json(['data' => $data_pelanggan_baru]);
             return redirect('/Data-Result')->with('success', 'Data berhasil ditambahkan.');
         } else {
             return back()->with('error', 'Gagal menambahkan data');

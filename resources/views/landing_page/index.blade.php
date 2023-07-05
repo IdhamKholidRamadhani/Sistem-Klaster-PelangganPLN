@@ -39,7 +39,7 @@
                 </p>
                 <div class="flex w-full justify-center items-end">
                     <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left">
-                        <form action="/Cari" method="post">
+                        <form id="cari">
                             <label for="search" class="leading-7 text-sm text-gray-400">Cek ID Pel</label>
                             <input type="text" id="search" name="search"
                                 class="w-full bg-gray-800 rounded border bg-opacity-40 border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -54,15 +54,40 @@
 
                 <div id="modal" class="hidden w-full bg-white border border-gray-200 rounded-lg shadow mt-8">
                     <div class="p-4 bg-white rounded-lg md:p-8">
-                        <h5 class="mb-3 text-xl font-extrabold tracking-tight text-gray-900">
-                            ID Pelanggan</h5>
-                        <p class="mb-3 text-gray-500">
-                            {{-- @foreach ($data as $d)
-                                {{ $d->nama_pelanggan_result }}.
-                            @endforeach --}}
-                        </p>
+                        <h5 class="mb-6 text-lg font-bold tracking-tight text-gray-900">
+                            Hasil Cek Data Pelanggan Listrik</h5>
+
+                        <div class="relative overflow-x-auto">
+                            <table class="w-full text-sm text-left text-gray-500">
+                                <thead class="text-xs text-gray-700 bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            ID Pelanggan
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Nama Pelanggan
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Jenis Tarif
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Daya (Watt)
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Alamat
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Kategori Pelanggan
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="DataPLN">
+                                    {{-- Menampilkan Data --}}
+                                </tbody>
+                            </table>
+                        </div>
                         <button type="button" id="close"
-                            class="py-2.5 px-5 mr-2 text-sm text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">
+                            class="py-2.5 px-5 mr-2 mt-4 text-sm text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200">
                             Tutup
                         </button>
                     </div>
@@ -122,14 +147,50 @@
 </body>
 
 </html>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+    integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     var modal = document.getElementById("modal");
     var btn = document.getElementById("defaultModal");
     var close = document.getElementById("close");
 
     btn.onclick = function() {
+        var search = document.getElementById("search").value;
         modal.style.display = "block";
+        data = {
+            'cari': search,
+        }
+        $.post("{{ url('/Cari') }}", data, function(res) {
+            if (typeof res.data === 'object') {
+                $('#DataPLN').replaceWith(`
+                    <tr id="DataPLN" class="bg-white capitalize">
+                        <th scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            ${res.data?.no_pelanggan_result}
+                        </th>
+                        <td class="px-6 py-4">
+                            ${res.data?.nama_pelanggan_result}
+                        </td>
+                        <td class="px-6 py-4">
+                            ${res.data?.tarif_pelanggan_result}
+                        </td>
+                        <td class="px-6 py-4">
+                            ${res.data?.daya_pelanggan_result}
+                        </td>
+                        <td class="px-6 py-4">
+                            ${res.data?.alamat_pelanggan_result}
+                        </td>
+                        <td class="px-6 py-4">
+                            ${res.data?.kategori_result}
+                        </td>
+                    </tr>`);
+                console.log(res.data);
+            } else {
+                $("#DataPLN").replaceWith(`<tr id="DataPLN"> ${res.data} </tr>`);
+                console.log(res.data);
+            }
+        }, "JSON", )
     }
 
     close.onclick = function() {

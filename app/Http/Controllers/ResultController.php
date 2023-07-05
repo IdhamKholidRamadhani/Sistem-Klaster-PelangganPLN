@@ -73,7 +73,7 @@ class ResultController extends Controller
     public function exportPDF()
     {
         $data = DataResultCluster::get();
-        $pdf = PDF::loadView('landing_page.pdf', compact('data'));
+        $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
         $pdf->setOption('enable-local-file-access', true);
         return $pdf->stream();
         // return view('landing_page.pdf', compact('data'));
