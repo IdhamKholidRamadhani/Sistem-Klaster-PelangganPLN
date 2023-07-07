@@ -66,8 +66,6 @@ class KmedoidsController extends Controller
             $medoid['titik2']->sktm_pelanggan_raw_convert = 0;
         }
 
-        // return $dataConvert;
-
         $jumlah = 0;
         $agtClus1 = [];
         $agtClus2 = [];
@@ -106,63 +104,56 @@ class KmedoidsController extends Controller
     {
         $data = DataRaw::all(); //Panggil data raw
         $median = KmedoidsController::median();  //Panggil func median
-        $medoid_1 = [
-            "titik1" => $data[$median->medoid1->titik1],
-            "titik2" => $data[$median->medoid1->titik2],
-        ]; //Panggil titik median1
-        $medoid_2 = [
-            "titik1" => $data[$median->medoid2->titik1],
-            "titik2" => $data[$median->medoid2->titik2],
-        ]; //Panggil titik median2
 
-
-        // $DataSubsidi =  $data->filter(function ($item) {
-        //     return $item->daya_pelanggan_raw == 450;
-        // });
-
-        // $DataCekSubsidi = $data->filter(function ($item) {
-        //     return $item->daya_pelanggan_raw > 450;
-        // });
-
-        // return response()->json(["data" => $DataSubsidi], 200);
-
-        // dd($DataCekSubsidi);
-
-
-        $euclidean1 = KmedoidsController::euclidean($data, $medoid_1);
-        $euclidean2 = KmedoidsController::euclidean($data, $medoid_2);
-
-        $simpangan_baku = $euclidean2->jumlah - $euclidean1->jumlah; // S = b-a
-
+        $cek_simpangan_baku = true;
+        $i = 0;
         $HasilCekSubsidi = [];
-        if ($simpangan_baku > 0) {
-            foreach ($euclidean1->hasil_klaster2 as $item) {
-                array_push($HasilCekSubsidi, $item['no_pelanggan_raw']);
-            }
+        $DataSubsidi = [];
+        while ($cek_simpangan_baku){
+            $medoid_1 = [
+                "titik1" => $data[$median->medoid1->titik1],
+                "titik2" => $data[$median->medoid1->titik2+$i],
+            ]; //Panggil titik median1
+            $medoid_2 = [
+                "titik1" => $data[$median->medoid2->titik1],
+                "titik2" => $data[$median->medoid2->titik2-$i],
+            ]; //Panggil titik median2
 
-            // foreach($DataSubsidi as $ds){ //Data 450
-            //     array_push($HasilCekSubsidi, $ds->no_pelanggan_raw);
-            // }
+            $euclidean1 = KmedoidsController::euclidean($data, $medoid_1);
+            $euclidean2 = KmedoidsController::euclidean($data, $medoid_2);
 
-            foreach($data as $d){
-                if(in_array($d->no_pelanggan_raw, $HasilCekSubsidi)){
-                    $d->nama_pelanggan_raw = strtolower($d->nama_pelanggan_raw);
-                    $d->alamat_pelanggan_raw = strtolower($d->alamat_pelanggan_raw);
-                    $d->kategori = "Subsidi";
-                }else{
-                    $d->nama_pelanggan_raw = strtolower($d->nama_pelanggan_raw);
-                    $d->alamat_pelanggan_raw = strtolower($d->alamat_pelanggan_raw);
-                    $d->kategori = "Non Subsidi";
+            $simpangan_baku = $euclidean2->jumlah - $euclidean1->jumlah; // S = b-a
+
+            if ($simpangan_baku > 0) {
+                foreach ($euclidean1->hasil_klaster2 as $item) {
+                    array_push($HasilCekSubsidi, $item['no_pelanggan_raw']);
                 }
+
+                foreach($data as $d){
+                    if(in_array($d->no_pelanggan_raw, $HasilCekSubsidi)){
+                        $d->nama_pelanggan_raw = strtolower($d->nama_pelanggan_raw);
+                        $d->alamat_pelanggan_raw = strtolower($d->alamat_pelanggan_raw);
+                        $d->kategori = "Subsidi";
+                    }else{
+                        $d->nama_pelanggan_raw = strtolower($d->nama_pelanggan_raw);
+                        $d->alamat_pelanggan_raw = strtolower($d->alamat_pelanggan_raw);
+                        $d->kategori = "Non Subsidi";
+                    }
+                }
+                $DataSubsidi =  $data->filter(function ($item) {
+                    // return $item->daya_pelanggan_raw == 450;
+                    if($item->daya_pelanggan_raw == 450){
+                        $item->kategori = "Subsidi";
+                    }
+                    return $item;
+                });
+                $cek_simpangan_baku = false;
+            }else{
+                $i =+ 1;
+                $cek_simpangan_baku = true;
             }
-            $DataSubsidi =  $data->filter(function ($item) {
-                // return $item->daya_pelanggan_raw == 450;
-                if($item->daya_pelanggan_raw == 450){
-                    $item->kategori = "Subsidi";
-                }
-            });
         }
-        return $data;
+        return $DataSubsidi;
 
     }
 
