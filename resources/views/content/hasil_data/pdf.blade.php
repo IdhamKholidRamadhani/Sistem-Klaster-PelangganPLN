@@ -16,7 +16,7 @@
                 <h4 class="font-weight-bold">DAFTAR PELANGGAN PENERIMA LISTRIK SUBSIDI & NON SUBSIDI</h4>
                 <h6 class="font-weight-bold">Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</h6>
                 <p>Jl. Soekarno-Hatta No.153, Kebumen, Bumirejo, Kec. Kebumen, Kabupaten Kebumen, Jawa Tengah 54311</p>
-                <p>Diambil pada tanggal {{ date("d-m-Y") }}.</p>
+                <p>Diambil pada tanggal {{ date('d-m-Y') }}.</p>
             </div>
         </div>
         <hr style="border-top: 4px double" class="mb-2">
@@ -29,10 +29,12 @@
                     <th scope="col">Tarif</th>
                     <th scope="col">Daya</th>
                     <th scope="col">Alamat</th>
-                    <th scope="col">Pekerjaan</th>
-                    <th scope="col">Penghasilan</th>
-                    <th scope="col">Tgg</th>
-                    <th scope="col">SKTM</th>
+                    @if (auth()->user()->role == 'dinsos')
+                        <th scope="col">Pekerjaan</th>
+                        <th scope="col">Penghasilan</th>
+                        <th scope="col">Tgg</th>
+                        <th scope="col">SKTM</th>
+                    @endif
                     <th scope="col">Kategori</th>
                 </tr>
             </thead>
@@ -46,11 +48,12 @@
                         <td>{{ $d->tarif_pelanggan_result }}</td>
                         <td>{{ $d->daya_pelanggan_result }}</td>
                         <td>{{ $d->alamat_pelanggan_result }}</td>
-                        <td>{{ $d->pekerjaan_pelanggan_result }}</td>
-                        {{-- <td>@currency($d->penghasilan_pelanggan_result)</td> --}}
-                        <td>{{ $d->penghasilan_pelanggan_result }}</td>
-                        <td>{{ $d->tanggungan_pelanggan_result }}</td>
-                        <td>{{ $d->sktm_pelanggan_result }}</td>
+                        @if (auth()->user()->role == 'dinsos')
+                            <td>{{ $d->pekerjaan_pelanggan_result }}</td>
+                            <td>{{ $d->penghasilan_pelanggan_result }}</td>
+                            <td>{{ $d->tanggungan_pelanggan_result }}</td>
+                            <td>{{ $d->sktm_pelanggan_result }}</td>
+                        @endif
                         <td>{{ $d->kategori_result }}</td>
                     </tr>
                 @endforeach

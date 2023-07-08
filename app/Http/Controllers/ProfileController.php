@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
     public function viewProfile()
     {
-        $data = User::all();
+        $profil = Auth::user()->id;
+        $data = User::where('id',$profil)->get();
         return view('content.static.profile',compact('data'));
     }
 

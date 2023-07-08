@@ -34,13 +34,7 @@ Route::post('ActionLogin',[AuthController::class,'actionLogin'])->name('actionlo
 Route::get('Register',[AuthController::class,'viewregister']);
 Route::post('ActionRegister', [AuthController::class, 'actionRegister'])->name('actionRegister');
 
-Route::middleware(['auth'])->group(function () {
-    //Dash
-    Route::get('Dashboard',[DashboardController::class, 'dashboard']);
-    Route::get('Chart-Admin', [DashboardController::class, 'chartData']);
-    // Route::get('Profile',[ProfileController::class,'viewForm']);
-    Route::get('Profile',[ProfileController::class,'viewProfile']);
-    Route::post('Update-Profile/{id}',[ProfileController::class,'updateProfile']);
+Route::middleware(['auth','cekrole:dinsos'])->group(function () {
 
     //Upload
     Route::get('Upload-Data-Raw',[RawDataController::class, 'viewUpload']);
@@ -62,11 +56,27 @@ Route::middleware(['auth'])->group(function () {
     Route::get('Result',[ResultController::class,'viewDataResult'])->name('Result');
     Route::get('Export-Excel',[ResultController::class,'exportExcel']);
     Route::get('Export-PDF',[ResultController::class,'exportPDF']);
+});
 
+Route::middleware(['auth','cekrole:dinsos,pln'])->group(function (){
+    //Dash
+    Route::get('Dashboard',[DashboardController::class, 'dashboard']);
+    Route::get('Chart-Admin', [DashboardController::class, 'chartDataDinsos']);
+    Route::get('Chart-Pln', [DashboardController::class, 'chartDataPln']);
+    Route::get('Profile',[ProfileController::class,'viewProfile']);
+    Route::post('Update-Profile/{id}',[ProfileController::class,'updateProfile']);
 
+    //Hasil
+    Route::post('Data-From-Raw',[ResultController::class, 'DataTable_from_dataRaw']);
+    Route::get('Data-Result',[ResultController::class, 'viewResult']);
+    Route::get('Result',[ResultController::class,'viewDataResult'])->name('Result');
+    Route::get('Export-Excel',[ResultController::class,'exportExcel']);
+    Route::get('Export-PDF',[ResultController::class,'exportPDF']);
+
+    //Logout
     Route::post('ActionLogout',[AuthController::class,'actionLogout'])->name('Logout');
 });
 
 //test
-Route::get('Test-Hasil-Klaster',[Kmedoids2Controller::class, 'kMedoid']);
-Route::get('Test-MinMax',[Kmedoids2Controller::class, 'median']);
+// Route::get('Test-Hasil-Klaster',[Kmedoids2Controller::class, 'kMedoid']);
+// Route::get('Test-MinMax',[Kmedoids2Controller::class, 'median']);

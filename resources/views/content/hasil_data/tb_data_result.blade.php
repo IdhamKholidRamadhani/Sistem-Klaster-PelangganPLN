@@ -37,29 +37,33 @@
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                     <h6 class="text-base font-bold">Tabel Hasil Klaster Data Pelanggan</h6>
-                    <a href="/Data-Result/Tambah-Data-Baru" type="button"
-                        class="ml-auto focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                        <i class="fa fa-user-plus mr-2" aria-hidden="true"></i>
-                        Tambah Data
-                    </a>
+                    @if (auth()->user()->role == 'dinsos')
+                        <a href="/Data-Result/Tambah-Data-Baru" type="button"
+                            class="ml-auto focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                            <i class="fa fa-user-plus mr-2" aria-hidden="true"></i>
+                            Tambah Data
+                        </a>
+                    @endif
+                    @if (auth()->user()->role == 'pln')
+                        <a
+                            class="invisible ml-auto focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+                        </a>
+                    @endif
 
                     <a type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
                         <i class="fa fa-download mr-2" aria-hidden="true"></i>
                         Cetak
                     </a>
-                    <div id="dropdown"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-30">
+                    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-30">
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
                             <li>
-                                <a href="/Export-Excel"
-                                    class="block px-4 py-2 hover:bg-gray-100">
+                                <a href="/Export-Excel" class="block px-4 py-2 hover:bg-gray-100">
                                     <i class="fa fa-file-excel-o mr-1" aria-hidden="true"></i>
                                     Excel</a>
                             </li>
                             <li>
-                                <a href="/Export-PDF"
-                                    class="block px-4 py-2 hover:bg-gray-100">
+                                <a href="/Export-PDF" class="block px-4 py-2 hover:bg-gray-100">
                                     <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i>
                                     PDF</a>
                             </li>

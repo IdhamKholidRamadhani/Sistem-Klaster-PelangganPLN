@@ -14,59 +14,96 @@
 
     <div class="items-center block w-auto max-h-full overflow-auto h-full grow basis-full">
         <ul class="flex flex-col pl-0 mb-0">
+            @if (auth()->user()->role == 'dinsos')
+                <li class="w-full mt-4">
+                    <h6 class="pl-6 ml-2 text-sm text-gray-400 font-extralight leading-tight">Dashboard</h6>
+                </li>
+                <li class="mt-2 w-full">
+                    <a class="{{ request()->is('Dashboard', 'Profile') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                        href="/Dashboard">
+                        <div
+                            class="{{ request()->is('Dashboard', 'Profile') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            <i class="fa fa-th-large {{ request()->is('Dashboard', 'Profile') ? 'text-white' : '' }}"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Dashboard</span>
+                    </a>
+                </li>
 
-            <li class="w-full mt-4">
-                <h6 class="pl-6 ml-2 text-sm text-gray-400 font-extralight leading-tight">Dashboard</h6>
-            </li>
-            <li class="mt-2 w-full">
-                <a class="{{ request()->is('Dashboard','Profile') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="/Dashboard">
-                    <div
-                        class="{{ request()->is('Dashboard','Profile') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                        <i class="fa fa-th-large {{ request()->is('Dashboard','Profile') ? 'text-white' : '' }}" aria-hidden="true"></i>
-                    </div>
-                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Dashboard</span>
-                </a>
-            </li>
+                <li class="w-full mt-4">
+                    <h6 class="pl-6 ml-2 text-sm text-gray-400 font-extralight leading-tight">Data Processing</h6>
+                </li>
+                <li class="mt-2 w-full">
+                    <a class="{{ request()->is('Upload-Data-Raw') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                        href="/Upload-Data-Raw">
+                        <div
+                            class="{{ request()->is('Upload-Data-Raw') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            <i class="fa fa-cloud-upload {{ request()->is('Upload-Data-Raw') ? 'text-white' : '' }}"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span class="ml-1 duration-300 pointer-events-none ease-soft">Upload Data</span>
+                    </a>
+                </li>
 
-            <li class="w-full mt-4">
-                <h6 class="pl-6 ml-2 text-sm text-gray-400 font-extralight leading-tight">Data Processing</h6>
-            </li>
-            <li class="mt-2 w-full">
-                <a class="{{ request()->is('Upload-Data-Raw') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="/Upload-Data-Raw">
-                    <div
-                        class="{{ request()->is('Upload-Data-Raw') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                        <i class="fa fa-cloud-upload {{ request()->is('Upload-Data-Raw') ? 'text-white' : '' }}" aria-hidden="true"></i>
-                    </div>
-                    <span class="ml-1 duration-300 pointer-events-none ease-soft">Upload Data</span>
-                </a>
-            </li>
+                <li class="w-full">
+                    <a class="{{ request()->is('Table-Raw') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                        href="/Table-Raw">
+                        <div
+                            class="{{ request()->is('Table-Raw') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
+                            <i class="fa fa-sitemap {{ request()->is('Table-Raw') ? 'text-white' : '' }}"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span class="ml-1 duration-300 pointer-events-none ease-soft">Pengelompokan Data</span>
+                    </a>
+                </li>
 
-            <li class="w-full">
-                <a class="{{ request()->is('Table-Raw') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="/Table-Raw">
-                    <div
-                        class="{{ request()->is('Table-Raw') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
-                        <i class="fa fa-sitemap {{ request()->is('Table-Raw') ? 'text-white' : '' }}" aria-hidden="true"></i>
-                    </div>
-                    <span class="ml-1 duration-300 pointer-events-none ease-soft">Pengelompokan Data</span>
-                </a>
-            </li>
+                <li class="w-full mt-4">
+                    <h6 class="pl-6 ml-2 text-sm font-extralight text-gray-400 leading-tight">Output</h6>
+                </li>
+                <li class="mt-2 w-full">
+                    <a class="{{ request()->is('Data-Result', 'Data-Result/Tambah-Data-Baru') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                        href="/Data-Result">
+                        <div
+                            class="{{ request()->is('Data-Result', 'Data-Result/Tambah-Data-Baru') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
+                            <i class="fa fa-file-text {{ request()->is('Data-Result', 'Data-Result/Tambah-Data-Baru') ? 'text-white' : '' }}"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span class="ml-1 duration-300 pointer-events-none ease-soft">Hasil</span>
+                    </a>
+                </li>
+            @endif
 
-            <li class="w-full mt-4">
-                <h6 class="pl-6 ml-2 text-sm font-extralight text-gray-400 leading-tight">Output</h6>
-            </li>
-            <li class="mt-2 w-full">
-                <a class="{{ request()->is('Data-Result','Data-Result/Tambah-Data-Baru') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="/Data-Result">
-                    <div
-                        class="{{ request()->is('Data-Result','Data-Result/Tambah-Data-Baru') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
-                        <i class="fa fa-file-text {{ request()->is('Data-Result','Data-Result/Tambah-Data-Baru') ? 'text-white' : '' }}" aria-hidden="true"></i>
-                    </div>
-                    <span class="ml-1 duration-300 pointer-events-none ease-soft">Hasil</span>
-                </a>
-            </li>
+            @if (auth()->user()->role == 'pln')
+                <li class="w-full mt-4">
+                    <h6 class="pl-6 ml-2 text-sm text-gray-400 font-extralight leading-tight">Dashboard</h6>
+                </li>
+                <li class="mt-2 w-full">
+                    <a class="{{ request()->is('Dashboard', 'Profile') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                        href="/Dashboard">
+                        <div
+                            class="{{ request()->is('Dashboard', 'Profile') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                            <i class="fa fa-th-large {{ request()->is('Dashboard', 'Profile') ? 'text-white' : '' }}"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Dashboard</span>
+                    </a>
+                </li>
+                <li class="w-full mt-4">
+                    <h6 class="pl-6 ml-2 text-sm font-extralight text-gray-400 leading-tight">Output</h6>
+                </li>
+                <li class="mt-2 w-full">
+                    <a class="{{ request()->is('Data-Result', 'Data-Result/Tambah-Data-Baru') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
+                        href="/Data-Result">
+                        <div
+                            class="{{ request()->is('Data-Result', 'Data-Result/Tambah-Data-Baru') ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
+                            <i class="fa fa-file-text {{ request()->is('Data-Result', 'Data-Result/Tambah-Data-Baru') ? 'text-white' : '' }}"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span class="ml-1 duration-300 pointer-events-none ease-soft">Hasil</span>
+                    </a>
+                </li>
+            @endif
+
         </ul>
     </div>
 </aside>
