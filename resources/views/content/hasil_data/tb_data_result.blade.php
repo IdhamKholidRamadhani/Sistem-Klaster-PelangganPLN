@@ -1,6 +1,12 @@
 @extends('layouts.template')
-@section('title', 'Hasil Processing')
-@section('title3', 'Hasil')
+@if (auth()->user()->role == 'dinsos')
+    @section('title', 'Hasil Processing')
+    @section('title3', 'Hasil')
+@endif
+@if (auth()->user()->role == 'pln')
+    @section('title', 'Pelanggan')
+    @section('title3', 'Data Pelanggan')
+@endif
 @section('content')
 
     <div class="flex flex-wrap -mx-3">
@@ -37,7 +43,13 @@
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="flex p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                    <h6 class="text-base font-bold">Tabel Hasil Klaster Data Pelanggan</h6>
+                    @if (auth()->user()->role == 'dinsos')
+                        <h6 class="text-base font-bold">Tabel Hasil Klaster Data Pelanggan</h6>
+                    @endif
+                    @if (auth()->user()->role == 'pln')
+                        <h6 class="text-base font-bold">Data Pelanggan Penerima Listrik Subsidi</h6>
+                    @endif
+
                     @if (auth()->user()->role == 'dinsos')
                         <a href="/Data-Result/Tambah-Data-Baru" type="button"
                             class="ml-auto focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
@@ -58,52 +70,103 @@
                     </a>
                     <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-30">
                         <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
-                            <li>
-                                <a href="/Export-Excel" class="block px-4 py-2 hover:bg-gray-100">
-                                    <i class="fa fa-file-excel-o mr-1" aria-hidden="true"></i>
-                                    Excel</a>
-                            </li>
-                            <li>
-                                <a href="/Export-PDF" class="block px-4 py-2 hover:bg-gray-100">
-                                    <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i>
-                                    PDF</a>
-                            </li>
+                            @if (auth()->user()->role == 'dinsos')
+                                <li>
+                                    <a href="/Export-Excel" class="block px-4 py-2 hover:bg-gray-100">
+                                        <i class="fa fa-file-excel-o mr-1" aria-hidden="true"></i>
+                                        Excel</a>
+                                </li>
+                                <li>
+                                    <a href="/Export-PDF" class="block px-4 py-2 hover:bg-gray-100">
+                                        <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i>
+                                        PDF</a>
+                                </li>
+                            @endif
+                            
+                            @if (auth()->user()->role == 'pln')
+                                <li>
+                                    <a href="/Export-Excel-PLN" class="block px-4 py-2 hover:bg-gray-100">
+                                        <i class="fa fa-file-excel-o mr-1" aria-hidden="true"></i>
+                                        Excel</a>
+                                </li>
+                                <li>
+                                    <a href="/Export-PDF-PLN" class="block px-4 py-2 hover:bg-gray-100">
+                                        <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i>
+                                        PDF</a>
+                                </li>
+                            @endif
+
                         </ul>
                     </div>
 
                 </div>
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="overflow-x-auto p-7">
-                        <table id="data_result_all" class="cell-border" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th class="text-left text-sm whitespace-nowrap">
-                                        No</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        ID Pel</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        Nama</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        Tarif</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        Daya</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        Alamat</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        Pekerjaan</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        Penghasilan</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        Tgg</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        SKTM</th>
-                                    <th class="font-bold text-left text-sm whitespace-nowrap">
-                                        Kategori</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm capitalize">
-                            </tbody>
-                        </table>
+                        @if (auth()->user()->role == 'dinsos')
+                            <table id="data_result_all" class="cell-border" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left text-sm whitespace-nowrap">
+                                            No</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            ID Pel</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Nama</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Tarif</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Daya</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Alamat</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Pekerjaan</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Penghasilan</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Tgg</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            SKTM</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Kategori</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm capitalize">
+                                </tbody>
+                            </table>
+                        @endif
+
+                        @if (auth()->user()->role == 'pln')
+                            <table id="data_result_all_pln" class="cell-border" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left text-sm whitespace-nowrap">
+                                            No</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            ID Pel</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Nama</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Tarif</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Daya</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Alamat</th>
+                                        {{-- <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Pekerjaan</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Penghasilan</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Tgg</th>
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            SKTM</th> --}}
+                                        <th class="font-bold text-left text-sm whitespace-nowrap">
+                                            Kategori</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm capitalize">
+                                </tbody>
+                            </table>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -172,6 +235,55 @@
                     {
                         data: 'sktm_pelanggan_result',
                         name: 'sktm_pelanggan_result'
+                    },
+                    {
+                        data: 'kategori_result',
+                        name: 'kategori_result'
+                    },
+                    // {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+
+            $('#data_result_all_pln').DataTable({
+                // processing: true,
+                retrieve: true,
+                serverSide: true,
+                paginate: true,
+                // searchDelay: 500,
+                bDeferRender: true,
+                responsive: true,
+                autoWidth: false,
+                pageLength: 10,
+                scrollX: true,
+                pagingType: 'simple_numbers',
+                // lengthMenu: [
+                //     [5, 10, 25, 50, 100],
+                //     [5, 10, 25, 50, 100]
+                // ],
+                ajax: "{{ route('Result') }}",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                    },
+                    {
+                        data: 'no_pelanggan_result',
+                        name: 'no_pelanggan_result'
+                    },
+                    {
+                        data: 'nama_pelanggan_result',
+                        name: 'nama_pelanggan_result'
+                    },
+                    {
+                        data: 'tarif_pelanggan_result',
+                        name: 'tarif_pelanggan_result'
+                    },
+                    {
+                        data: 'daya_pelanggan_result',
+                        name: 'daya_pelanggan_result'
+                    },
+                    {
+                        data: 'alamat_pelanggan_result',
+                        name: 'alamat_pelanggan_result'
                     },
                     {
                         data: 'kategori_result',

@@ -89,7 +89,7 @@
                     </a>
                 </li>
                 <li class="w-full mt-4">
-                    <h6 class="pl-6 ml-2 text-sm font-extralight text-gray-400 leading-tight">Output</h6>
+                    <h6 class="pl-6 ml-2 text-sm font-extralight text-gray-400 leading-tight">Pelanggan</h6>
                 </li>
                 <li class="mt-2 w-full">
                     <a class="{{ request()->is('Data-Result', 'Data-Result/Tambah-Data-Baru') ? 'shadow-soft-xl rounded-lg bg-gradient-to-tl from-purple-300 to-pink-100 font-semibold text-slate-700' : 'text-gray-800' }} py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
@@ -99,7 +99,7 @@
                             <i class="fa fa-file-text {{ request()->is('Data-Result', 'Data-Result/Tambah-Data-Baru') ? 'text-white' : '' }}"
                                 aria-hidden="true"></i>
                         </div>
-                        <span class="ml-1 duration-300 pointer-events-none ease-soft">Hasil</span>
+                        <span class="ml-1 duration-300 pointer-events-none ease-soft">Data Pelanggan</span>
                     </a>
                 </li>
             @endif

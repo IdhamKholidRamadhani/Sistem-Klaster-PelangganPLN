@@ -35,6 +35,8 @@ Route::get('Register',[AuthController::class,'viewregister']);
 Route::post('ActionRegister', [AuthController::class, 'actionRegister'])->name('actionRegister');
 
 Route::middleware(['auth','cekrole:dinsos'])->group(function () {
+    //Dash
+    Route::get('Chart-Admin', [DashboardController::class, 'chartDataDinsos']);
 
     //Upload
     Route::get('Upload-Data-Raw',[RawDataController::class, 'viewUpload']);
@@ -61,7 +63,7 @@ Route::middleware(['auth','cekrole:dinsos'])->group(function () {
 Route::middleware(['auth','cekrole:dinsos,pln'])->group(function (){
     //Dash
     Route::get('Dashboard',[DashboardController::class, 'dashboard']);
-    Route::get('Chart-Admin', [DashboardController::class, 'chartDataDinsos']);
+
     Route::get('Chart-Pln', [DashboardController::class, 'chartDataPln']);
     Route::get('Profile',[ProfileController::class,'viewProfile']);
     Route::post('Update-Profile/{id}',[ProfileController::class,'updateProfile']);
@@ -70,8 +72,10 @@ Route::middleware(['auth','cekrole:dinsos,pln'])->group(function (){
     Route::post('Data-From-Raw',[ResultController::class, 'DataTable_from_dataRaw']);
     Route::get('Data-Result',[ResultController::class, 'viewResult']);
     Route::get('Result',[ResultController::class,'viewDataResult'])->name('Result');
-    Route::get('Export-Excel',[ResultController::class,'exportExcel']);
-    Route::get('Export-PDF',[ResultController::class,'exportPDF']);
+    // Route::get('Export-Excel',[ResultController::class,'exportExcel']);
+    Route::get('Export-Excel-PLN',[ResultController::class,'exportExcelPLN']);
+    // Route::get('Export-PDF',[ResultController::class,'exportPDF']);
+    Route::get('Export-PDF-PLN',[ResultController::class,'exportPDFPLN']);
 
     //Logout
     Route::post('ActionLogout',[AuthController::class,'actionLogout'])->name('Logout');

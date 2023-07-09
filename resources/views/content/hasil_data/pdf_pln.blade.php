@@ -29,10 +29,6 @@
                     <th scope="col">Tarif</th>
                     <th scope="col">Daya</th>
                     <th scope="col">Alamat</th>
-                    <th scope="col">Pekerjaan</th>
-                    <th scope="col">Penghasilan</th>
-                    <th scope="col">Tgg</th>
-                    <th scope="col">SKTM</th>
                     <th scope="col">Kategori</th>
                 </tr>
             </thead>
@@ -46,11 +42,6 @@
                         <td>{{ $d->tarif_pelanggan_result }}</td>
                         <td>{{ $d->daya_pelanggan_result }}</td>
                         <td>{{ $d->alamat_pelanggan_result }}</td>
-                        <td>{{ $d->pekerjaan_pelanggan_result }}</td>
-                        {{-- <td>{{ $d->penghasilan_pelanggan_result }}</td> --}}
-                        <td>@currency($d->penghasilan_pelanggan_result)</td>
-                        <td>{{ $d->tanggungan_pelanggan_result }}</td>
-                        <td>{{ $d->sktm_pelanggan_result }}</td>
                         <td>{{ $d->kategori_result }}</td>
                     </tr>
                 @endforeach

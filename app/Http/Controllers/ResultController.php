@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Datatables\DatatablesController;
 use App\Exports\ExcelExport;
+use App\Exports\ExcelExportPLN;
 use Illuminate\Http\Request;
 use App\Http\Controllers\KmedoidsController;
 use App\Models\DataResultCluster;
-// use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 use Exception;
 use PDF;
-use Illuminate\Support\Facades\App;
-// use Knp\Snappy\Pdf as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -67,15 +65,29 @@ class ResultController extends Controller
 
     public function exportExcel()
     {
-        return Excel::download(new ExcelExport, 'Data-Pelanggan-PLN.xlsx');
+        return Excel::download(new ExcelExport, 'Data-Penduduk-Penerima-Bantuan-Listrik-Subsidi.xlsx');
+    }
+
+    public function exportExcelPLN()
+    {
+        return Excel::download(new ExcelExportPLN, 'Data-Pelanggan-PLN.xlsx');
     }
 
     public function exportPDF()
     {
-        $data = DataResultCluster::get();
+        $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
         $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
+        // $pdf->setOption('enable-local-file-access', true);
+        return $pdf->stream();
+
+    }
+
+    public function exportPDFPLN()
+    {
+        $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
+        $pdf = PDF::loadView('content.hasil_data.pdf_pln', compact('data'));
         $pdf->setOption('enable-local-file-access', true);
         return $pdf->stream();
-        // return view('landing_page.pdf', compact('data'));
+
     }
 }

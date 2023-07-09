@@ -36,7 +36,7 @@ return [
     'pdf' => [
         'enabled' => true,
         'binary'  => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"',
-        'timeout' => false,
+        'timeout' => 3600,
         'options' => [],
         'env'     => [],
     ],
