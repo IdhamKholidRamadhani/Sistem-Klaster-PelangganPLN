@@ -1,5 +1,6 @@
 @extends('layouts.template')
-@section('title', 'Upload')
+@section('title', 'Processing Tabel Data')
+@section('title3', 'Processing Category')
 @section('content')
 
     <div class="flex flex-wrap -mx-3">

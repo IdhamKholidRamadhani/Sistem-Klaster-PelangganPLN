@@ -1,5 +1,7 @@
 @extends('layouts.template')
-@section('title', 'Form_KNN')
+@section('title', 'Hasil Processing')
+@section('title2', 'Tambah Data')
+@section('title3', 'Tambah Data')
 @section('content')
 
     <div class="flex-none w-full max-w-full px-3">

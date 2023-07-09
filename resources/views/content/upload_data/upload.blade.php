@@ -1,5 +1,6 @@
 @extends('layouts.template')
-@section('title', 'Upload')
+@section('title', 'Upload Data')
+@section('title3', 'Upload')
 @section('content')
 
 

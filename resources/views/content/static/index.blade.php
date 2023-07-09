@@ -1,5 +1,6 @@
 @extends('layouts.template')
-@section('title', 'Static')
+@section('title', 'Dashboard')
+@section('title3', 'Dashboard')
 @section('content')
     <div class="flex flex-wrap -mx-3">
         @if (auth()->user()->role == 'dinsos')

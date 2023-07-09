@@ -50,9 +50,11 @@
                             <a class="opacity-50 text-slate-700" href="javascript:;">Pages</a>
                         </li>
                         <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
-                            aria-current="page">Dashboard</li>
+                            aria-current="page">@yield('title')</li>
+                        <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']"
+                            aria-current="page">@yield('title2')</li>
                     </ol>
-                    <h6 class="mb-0 font-bold capitalize">Dashboard</h6>
+                    <h6 class="mb-0 font-bold capitalize">@yield('title3')</h6>
                 </nav>
 
                 <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
@@ -117,15 +119,10 @@
         <!-- end cards -->
     </main>
 
-    {{-- <div> --}}
     <button type="button" id="btn-back-to-top"
         class="btn bottom-7.5 right-7.5 fixed text-xl shadow-soft-lg rounded-circle cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 px-4 py-2 text-slate-700">
         <i class="fa fa-level-up fa-flip-horizontal text-white"></i>
     </button>
-    {{-- <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button> --}}
-    {{-- </div> --}}
 </body>
 
 <!-- plugin for charts  -->
