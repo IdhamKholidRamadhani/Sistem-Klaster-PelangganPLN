@@ -81,7 +81,8 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody id="DataPLN">
+                                <tbody>
+                                    <tr id="DataPLN"></tr>
                                     {{-- Menampilkan Data --}}
                                 </tbody>
                             </table>
@@ -185,10 +186,10 @@
                             ${res.data?.kategori_result}
                         </td>
                     </tr>`);
-                console.log(res.data);
+                // console.log(res.data);
             } else {
-                $("#DataPLN").replaceWith(`<tr id="DataPLN"> ${res.data} </tr>`);
-                console.log(res.data);
+                $("#DataPLN").replaceWith(`<tr id="DataPLN"> <td colspan="6" class="text-center py-4">${res.data}</td> </tr>`);
+                // console.log(res.data);
             }
         }, "JSON", )
     }

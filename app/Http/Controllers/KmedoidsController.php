@@ -9,15 +9,14 @@ use Illuminate\Http\Request;
 
 class KmedoidsController extends Controller
 {
-    public static function median() //Mengurutkan data asc & median
+    //Mengurutkan data asc & median
+    public static function median()
     {
         $data = DataRaw::orderBy('sktm_pelanggan_raw')
             ->orderBy('nama_pelanggan_raw')
-            // ->orderBy('no_pelanggan_raw')
             ->orderBy('daya_pelanggan_raw')
             ->orderBy('pekerjaan_pelanggan_raw')
             ->orderBy('penghasilan_pelanggan_raw')
-            // ->orderby('sktm_pelanggan_raw')
             ->orderby('alamat_pelanggan_raw')
             ->orderby('tanggungan_pelanggan_raw')
             ->get();
@@ -159,12 +158,10 @@ class KmedoidsController extends Controller
 
     public function viewTableKlaster()
     {
-        // return response(['test'=>KmedoidsController::kMedoid()],200);
         try {
             return DatatablesController::view(KmedoidsController::kMedoid());
         } catch (Exception $e) {
             return back()->withErrors($e->getMessage());
         }
-        // return response()->json(['data' => ], 200);
     }
 }
