@@ -14,8 +14,8 @@
         <div class="row align-items-start text-center mt-2">
             <div class="col">
                 <h4 class="font-weight-bold">DAFTAR PELANGGAN PENERIMA LISTRIK SUBSIDI & NON SUBSIDI</h4>
-                <h6 class="font-weight-bold">Dinas Sosial Pemberdayaan Perempuan dan Perlindungan Anak</h6>
-                <p>Jl. Soekarno-Hatta No.153, Kebumen, Bumirejo, Kec. Kebumen, Kabupaten Kebumen, Jawa Tengah 54311</p>
+                <h6 class="font-weight-bold">PLN UNIT LAYANAN PELANGGAN KEBUMEN</h6>
+                <p>Jl. Tentara Pelajar No.19, Panggel, Panjer, Kec. Kebumen, Kabupaten Kebumen, Jawa Tengah 54312</p>
                 <p>Diambil pada tanggal {{ date('d-m-Y') }}.</p>
             </div>
         </div>

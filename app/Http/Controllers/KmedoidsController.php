@@ -140,7 +140,6 @@ class KmedoidsController extends Controller
                     }
                 }
                 $DataSubsidi =  $data->filter(function ($item) {
-                    // return $item->daya_pelanggan_raw == 450;
                     if($item->daya_pelanggan_raw == 450){
                         $item->kategori = "Subsidi";
                     }
