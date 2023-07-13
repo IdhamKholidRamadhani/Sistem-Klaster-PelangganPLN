@@ -72,9 +72,7 @@ Route::middleware(['auth','cekrole:dinsos,pln'])->group(function (){
     Route::post('Data-From-Raw',[ResultController::class, 'DataTable_from_dataRaw']);
     Route::get('Data-Result',[ResultController::class, 'viewResult']);
     Route::get('Result',[ResultController::class,'viewDataResult'])->name('Result');
-    // Route::get('Export-Excel',[ResultController::class,'exportExcel']);
     Route::get('Export-Excel-PLN',[ResultController::class,'exportExcelPLN']);
-    // Route::get('Export-PDF',[ResultController::class,'exportPDF']);
     Route::get('Export-PDF-PLN',[ResultController::class,'exportPDFPLN']);
 
     //Logout

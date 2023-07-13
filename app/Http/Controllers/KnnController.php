@@ -58,7 +58,7 @@ class KnnController extends Controller
         $distance_data_baru = [];
         $count_data = 0;
         foreach ($euclidean_distance as $eu) {
-            if ($count_data < 7) {
+            if ($count_data < 3) {
                 array_push($distance_data_baru, $eu);
                 $count_data++;
             }
