@@ -35,7 +35,7 @@ return [
 
     'pdf' => [
         'enabled' => true,
-        'binary'  => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"',
+        'binary'  => '"wkhtmltopdf\bin\wkhtmltopdf.exe"',
         'timeout' => 3600,
         'options' => [],
         'env'     => [],
@@ -43,7 +43,7 @@ return [
 
     'image' => [
         'enabled' => true,
-        'binary'  => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltoimage"',
+        'binary'  => '"wkhtmltopdf\bin\wkhtmltopdf.exe"',
         'timeout' => 3600,
         'options' => [],
         'env'     => [],
