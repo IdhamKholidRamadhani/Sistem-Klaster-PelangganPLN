@@ -78,9 +78,8 @@ class ResultController extends Controller
     {
         $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
         $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
-        // $pdf->setOption('enable-local-file-access', true);
+        $pdf->setOption('enable-local-file-access', true);
         return $pdf->stream();
-
     }
 
     public function exportPDFPLN()
@@ -89,6 +88,5 @@ class ResultController extends Controller
         $pdf = PDF::loadView('content.hasil_data.pdf_pln', compact('data'));
         $pdf->setOption('enable-local-file-access', true);
         return $pdf->stream();
-
     }
 }
