@@ -55,6 +55,7 @@ class RawDataController extends Controller
         try {
             $data = DataRaw::all();
             $data->transform(function($item){
+                $item->no_pelanggan_raw = strval($item->no_pelanggan_raw);
                 $item->nama_pelanggan_raw = strtolower($item->nama_pelanggan_raw);
                 $item->alamat_pelanggan_raw = strtolower($item->alamat_pelanggan_raw);
 

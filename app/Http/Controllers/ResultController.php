@@ -52,6 +52,7 @@ class ResultController extends Controller
         try {
             $data = DataResultCluster::all()->sortBy('alamat_pelanggan_result')->values();
             $data->transform(function ($item) {
+                $item->no_pelanggan_result = strval($item->no_pelanggan_result);
                 $item->nama_pelanggan_result = strtolower($item->nama_pelanggan_result);
                 $item->alamat_pelanggan_result = strtolower($item->alamat_pelanggan_result);
 
