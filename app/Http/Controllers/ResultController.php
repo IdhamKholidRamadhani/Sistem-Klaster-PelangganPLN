@@ -89,6 +89,8 @@ class ResultController extends Controller
 
     public function exportPDF()
     {
+        $data = DataResultCluster::where('alamat_pelanggan_result', request()->desa)->get();
+        return view('content.hasil_data.pdf', compact('data'));
         // $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
         // $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
         // $pdf->setOption('enable-local-file-access', true);
@@ -97,6 +99,8 @@ class ResultController extends Controller
 
     public function exportPDFPLN()
     {
+        $data = DataResultCluster::where('alamat_pelanggan_result', request()->desa)->get();
+        return view('content.hasil_data.pdf_pln', compact('data'));
         // $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
         // $pdf = PDF::loadView('content.hasil_data.pdf_pln', compact('data'));
         // $pdf->setOption('enable-local-file-access', true);

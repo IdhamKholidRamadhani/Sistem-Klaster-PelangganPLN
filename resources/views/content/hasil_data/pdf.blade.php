@@ -37,6 +37,9 @@
                 </tr>
             </thead>
             <tbody class="text-capitalize">
+                @if (!request()->desa)
+                    <td colspan="11" class="text-center">Tidak Ada Data Yang Dipilih</td>
+                @endif
                 @php $i=1 @endphp
                 @foreach ($data as $d)
                     <tr>

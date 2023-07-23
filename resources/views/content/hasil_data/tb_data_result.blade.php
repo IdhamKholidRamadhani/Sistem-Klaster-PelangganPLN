@@ -83,7 +83,7 @@
                                         Excel</a>
                                 </li>
                                 <li>
-                                    <a href="/Export-PDF" class="block px-4 py-2 hover:bg-gray-100">
+                                    <a href="/Export-PDF?desa={{ request()->desa }}" class="block px-4 py-2 hover:bg-gray-100">
                                         <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i>
                                         PDF</a>
                                 </li>
@@ -96,7 +96,7 @@
                                         Excel</a>
                                 </li>
                                 <li>
-                                    <a href="/Export-PDF-PLN" class="block px-4 py-2 hover:bg-gray-100">
+                                    <a href="/Export-PDF-PLN?desa={{ request()->desa }}" class="block px-4 py-2 hover:bg-gray-100">
                                         <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i>
                                         PDF</a>
                                 </li>
