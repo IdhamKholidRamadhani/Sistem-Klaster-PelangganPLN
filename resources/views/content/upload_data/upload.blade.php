@@ -30,7 +30,7 @@
             </div>
         </div>
         <button type="button" id="button"
-            onclick="event.preventDefault(); document.getElementById('data-form').submit();"
+            onclick="event.preventDefault(); document.getElementById('data-form').submit();" disabled
             class="ml-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 p-4">
             <i class="fa fa-cloud-upload mr-2" aria-hidden="true"></i>Upload Data
         </button>
@@ -57,6 +57,7 @@
                 processData: false,
                 success: function(response) {
                     $('#path').val(response.path);
+                    $('#button').prop("disabled", false);
                     document.querySelector("#title_file").textContent = files.name;
                 },
             });

@@ -55,7 +55,7 @@ Route::middleware(['auth','cekrole:dinsos'])->group(function () {
     //Hasil
     Route::post('Data-From-Raw',[ResultController::class, 'DataTable_from_dataRaw']);
     Route::get('Data-Result',[ResultController::class, 'viewResult']);
-    Route::get('Result',[ResultController::class,'viewDataResult'])->name('Result');
+    Route::get('Result',[ResultController::class,'viewDataResult']);
     Route::get('Export-Excel',[ResultController::class,'exportExcel']);
     Route::get('Export-PDF',[ResultController::class,'exportPDF']);
 });

@@ -44,20 +44,33 @@ class ResultController extends Controller
 
     public function viewResult()
     {
-        return view('content.hasil_data.tb_data_result');
+        $desa = DataResultCluster::select('alamat_pelanggan_result')->groupBy('alamat_pelanggan_result')->get();
+        return view('content.hasil_data.tb_data_result', compact('desa'));
     }
 
     public function viewDataResult()
     {
         try {
-            $data = DataResultCluster::all()->sortBy('alamat_pelanggan_result')->values();
-            $data->transform(function ($item) {
-                $item->no_pelanggan_result = strval($item->no_pelanggan_result);
-                $item->nama_pelanggan_result = strtolower($item->nama_pelanggan_result);
-                $item->alamat_pelanggan_result = strtolower($item->alamat_pelanggan_result);
+            $data = [];
+            if (request()->has('desa')) {
+                $data = DataResultCluster::where('alamat_pelanggan_result', request()->desa)->get();
+                $data->transform(function ($item) {
+                    $item->no_pelanggan_result = strval($item->no_pelanggan_result);
+                    $item->nama_pelanggan_result = strtolower($item->nama_pelanggan_result);
+                    $item->alamat_pelanggan_result = strtolower($item->alamat_pelanggan_result);
 
-                return $item;
-            });
+                    return $item;
+                });
+            }else{
+                $data = DataResultCluster::all()->sortBy('alamat_pelanggan_result')->values();
+                $data->transform(function ($item) {
+                    $item->no_pelanggan_result = strval($item->no_pelanggan_result);
+                    $item->nama_pelanggan_result = strtolower($item->nama_pelanggan_result);
+                    $item->alamat_pelanggan_result = strtolower($item->alamat_pelanggan_result);
+
+                    return $item;
+                });
+            }
             return DatatablesController::view($data);
         } catch (Exception $e) {
             return back()->withErrors($e->getMessage());
@@ -76,17 +89,17 @@ class ResultController extends Controller
 
     public function exportPDF()
     {
-        $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
-        $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
-        $pdf->setOption('enable-local-file-access', true);
-        return $pdf->stream();
+        // $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
+        // $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
+        // $pdf->setOption('enable-local-file-access', true);
+        // return $pdf->stream();
     }
 
     public function exportPDFPLN()
     {
-        $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
-        $pdf = PDF::loadView('content.hasil_data.pdf_pln', compact('data'));
-        $pdf->setOption('enable-local-file-access', true);
-        return $pdf->stream();
+        // $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
+        // $pdf = PDF::loadView('content.hasil_data.pdf_pln', compact('data'));
+        // $pdf->setOption('enable-local-file-access', true);
+        // return $pdf->stream();
     }
 }

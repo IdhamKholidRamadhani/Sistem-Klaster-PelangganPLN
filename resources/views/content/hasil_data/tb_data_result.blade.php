@@ -8,7 +8,6 @@
     @section('title3', 'Data Pelanggan')
 @endif
 @section('content')
-
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             @if (session('success'))
@@ -63,6 +62,13 @@
                         </a>
                     @endif
 
+                    <select id="#" onchange="window.location.href=`Data-Result${this.value}`" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 px-5 py-2.5 mr-2 mb-2">
+                        <option value="">Pilih Desa</option>
+                        @foreach ($desa as $item)
+                            <option value="{{ '?desa='.ucfirst($item->alamat_pelanggan_result) }}" @selected(ucfirst($item->alamat_pelanggan_result) == request()->get('desa'))>{{ ucfirst($item->alamat_pelanggan_result) }}</option>
+                        @endforeach
+                    </select>
+
                     <a type="button" id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
                         <i class="fa fa-download mr-2" aria-hidden="true"></i>
@@ -82,7 +88,7 @@
                                         PDF</a>
                                 </li>
                             @endif
-                            
+
                             @if (auth()->user()->role == 'pln')
                                 <li>
                                     <a href="/Export-Excel-PLN" class="block px-4 py-2 hover:bg-gray-100">
@@ -179,6 +185,7 @@
             return str.charAt(0).toUpperCase() + str.slice(1);
         }
         $(function() {
+            const queryString = window.location.search;
             $('#data_result_all').DataTable({
                 // processing: true,
                 retrieve: true,
@@ -195,7 +202,7 @@
                 //     [5, 10, 25, 50, 100],
                 //     [5, 10, 25, 50, 100]
                 // ],
-                ajax: "{{ route('Result') }}",
+                ajax: "/Result"+queryString,
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -260,7 +267,7 @@
                 //     [5, 10, 25, 50, 100],
                 //     [5, 10, 25, 50, 100]
                 // ],
-                ajax: "{{ route('Result') }}",
+                ajax: "/Result"+queryString,
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
