@@ -41,32 +41,31 @@
             <p style="font-size: 11px;">Jl. Tentara Pelajar No.19, Panggel, Panjer, Kecamatan Kebumen, Kabupaten Kebumen, Jawa Tengah 54312</p>
             <p style="font-size: 11px;">Diambil pada tanggal {{ date('d-m-Y') }}.</p>
         </div>
-        <hr style="double">
-        <table id="pelanggan">
-            <tr>
-            <th>#</th>
-            <th>ID Pel</th>
-            <th>Nama</th>
-            <th>Tarif</th>
-            <th>Daya</th>
-            <th>Alamat</th>
-            <th>Kategori</th>
-            </tr>
-
-            @if (!request()->desa)
-                <td colspan="11" style="text-align:center;">Tidak Ada Data Yang Dipilih</td>
-            @endif
-            @php $i=1 @endphp
-            @foreach ($data as $d)
+        <hr style="border-top: 4px double" class="mb-2">
+        <table class="table table-bordered">
+            <thead style="background: #f2f2f2">
                 <tr>
-                    <td>{{ $i++ }}</td>
-                    <td>{{ $d->no_pelanggan_result }}</td>
-                    <td>{{ $d->nama_pelanggan_result }}</td>
-                    <td style="width:40px;">{{ $d->tarif_pelanggan_result }}</td>
-                    <td>{{ $d->daya_pelanggan_result }}</td>
-                    <td>{{ $d->alamat_pelanggan_result }}</td>
-                    <td>{{ $d->kategori_result }}</td>
+                    <th scope="col">#</th>
+                    <th scope="col">ID Pel</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Tarif</th>
+                    <th scope="col">Daya</th>
+                    <th scope="col">Alamat</th>
+                    <th scope="col">Kategori</th>
                 </tr>
+            </thead>
+            <tbody class="text-capitalize">
+                @php $i=1 @endphp
+                @foreach ($data as $d)
+                    <tr>
+                        <th scope="row">{{ $i++ }}</th>
+                        <td>{{ $d->no_pelanggan_result }}</td>
+                        <td width="60px">{{ $d->nama_pelanggan_result }}</td>
+                        <td>{{ $d->tarif_pelanggan_result }}</td>
+                        <td>{{ $d->daya_pelanggan_result }}</td>
+                        <td>{{ $d->alamat_pelanggan_result }}</td>
+                        <td>{{ $d->kategori_result }}</td>
+                    </tr>
                 @endforeach
         </table>
     </div>

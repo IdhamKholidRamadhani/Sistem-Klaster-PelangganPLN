@@ -75,6 +75,30 @@
                     <td>{{ $d->sktm_pelanggan_result }}</td>
                     <td>{{ $d->kategori_result }}</td>
                 </tr>
+<<<<<<< HEAD
+=======
+            </thead>
+            <tbody class="text-capitalize">
+                @if (!request()->desa)
+                    <td colspan="11" class="text-center">Tidak Ada Data Yang Dipilih</td>
+                @endif
+                @php $i=1 @endphp
+                @foreach ($data as $d)
+                    <tr>
+                        <th scope="row">{{ $i++ }}</th>
+                        <td>{{ $d->no_pelanggan_result }}</td>
+                        <td width="60px">{{ $d->nama_pelanggan_result }}</td>
+                        <td>{{ $d->tarif_pelanggan_result }}</td>
+                        <td>{{ $d->daya_pelanggan_result }}</td>
+                        <td>{{ $d->alamat_pelanggan_result }}</td>
+                        <td>{{ $d->pekerjaan_pelanggan_result }}</td>
+                        {{-- <td>{{ $d->penghasilan_pelanggan_result }}</td> --}}
+                        <td>@currency($d->penghasilan_pelanggan_result)</td>
+                        <td>{{ $d->tanggungan_pelanggan_result }}</td>
+                        <td>{{ $d->sktm_pelanggan_result }}</td>
+                        <td>{{ $d->kategori_result }}</td>
+                    </tr>
+>>>>>>> 4fb3762dcee1c01cb5b54c9c32c2ea4e50a6a8f8
                 @endforeach
         </table>
     </div>

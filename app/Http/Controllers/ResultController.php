@@ -89,18 +89,34 @@ class ResultController extends Controller
     public function exportPDF()
     {
         $data = DataResultCluster::where('alamat_pelanggan_result', request()->desa)->get();
+<<<<<<< HEAD
         $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
         $pdf->add_info('Title', 'Data Penduduk '.request()->desa);
         // return view('content.hasil_data.pdf', compact('data'));
         return $pdf->stream();
+=======
+        return view('content.hasil_data.pdf', compact('data'));
+        // $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
+        // $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
+        // $pdf->setOption('enable-local-file-access', true);
+        // return $pdf->stream();
+>>>>>>> 4fb3762dcee1c01cb5b54c9c32c2ea4e50a6a8f8
     }
 
     public function exportPDFPLN()
     {
         $data = DataResultCluster::where('alamat_pelanggan_result', request()->desa)->get();
+<<<<<<< HEAD
         $pdf = PDF::loadView('content.hasil_data.pdf_pln', compact('data'));
         $pdf->add_info('Title', 'Data Pelanggan '.request()->desa);
         // return view('content.hasil_data.pdf_pln', compact('data'));
         return $pdf->stream();
+=======
+        return view('content.hasil_data.pdf_pln', compact('data'));
+        // $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
+        // $pdf = PDF::loadView('content.hasil_data.pdf_pln', compact('data'));
+        // $pdf->setOption('enable-local-file-access', true);
+        // return $pdf->stream();
+>>>>>>> 4fb3762dcee1c01cb5b54c9c32c2ea4e50a6a8f8
     }
 }
