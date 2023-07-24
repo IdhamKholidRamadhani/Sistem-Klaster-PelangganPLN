@@ -65,7 +65,7 @@
                     <select id="#" onchange="window.location.href=`Data-Result${this.value}`" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 px-5 py-2.5 mr-2 mb-2">
                         <option value="">Pilih Desa</option>
                         @foreach ($desa as $item)
-                            <option value="{{ '?desa='.ucfirst($item->alamat_pelanggan_result) }}" @selected(ucfirst($item->alamat_pelanggan_result) == request()->get('desa'))>{{ ucfirst($item->alamat_pelanggan_result) }}</option>
+                            <option value="{{ '?desa='.ucfirst($item->alamat_pelanggan_result) }}" @selected(ucfirst(trim($item->alamat_pelanggan_result)) === ucfirst(trim(request()->get('desa'))))>{{ ucfirst($item->alamat_pelanggan_result) }}</option>
                         @endforeach
                     </select>
 
@@ -83,7 +83,7 @@
                                         Excel</a>
                                 </li>
                                 <li>
-                                    <a href="/Export-PDF" class="block px-4 py-2 hover:bg-gray-100">
+                                    <a href="/Export-PDF?desa={{ request()->desa }}" class="block px-4 py-2 hover:bg-gray-100">
                                         <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i>
                                         PDF</a>
                                 </li>
@@ -96,7 +96,7 @@
                                         Excel</a>
                                 </li>
                                 <li>
-                                    <a href="/Export-PDF-PLN" class="block px-4 py-2 hover:bg-gray-100">
+                                    <a href="/Export-PDF-PLN?desa={{ request()->desa }}" class="block px-4 py-2 hover:bg-gray-100">
                                         <i class="fa fa-file-pdf-o mr-1" aria-hidden="true"></i>
                                         PDF</a>
                                 </li>

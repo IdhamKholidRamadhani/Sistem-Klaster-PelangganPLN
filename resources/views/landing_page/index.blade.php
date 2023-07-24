@@ -125,7 +125,7 @@
                 <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
                     <button
                         class="bg-gray-100 inline-flex py-3 px-5 rounded-lg items-center hover:bg-gray-200 focus:outline-none">
-                        <img src="{{ asset('assets') }}/img/logo_PLN.png" class="w-25 h-36" alt="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Logo_PLN.png" class="w-25 h-36" alt="">
                     </button>
                 </div>
             </div>

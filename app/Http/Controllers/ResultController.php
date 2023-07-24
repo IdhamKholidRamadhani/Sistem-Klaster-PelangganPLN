@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\KmedoidsController;
 use App\Models\DataResultCluster;
 use Exception;
-use PDF;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 
 class ResultController extends Controller
@@ -23,7 +23,6 @@ class ResultController extends Controller
         if ($request->acceptToSaveData === 'acceptToSaveData') {
             DataResultCluster::truncate();
             $data = KmedoidsController::kMedoid();
-            // DataResultCluster::createMany($data->data);
             foreach ($data as $d) {
                 $save = new DataResultCluster();
                 $save->no_pelanggan_result = $d->no_pelanggan_raw;
@@ -48,7 +47,7 @@ class ResultController extends Controller
         return view('content.hasil_data.tb_data_result', compact('desa'));
     }
 
-    public function viewDataResult()
+    public static function viewDataResult()
     {
         try {
             $data = [];
@@ -89,17 +88,19 @@ class ResultController extends Controller
 
     public function exportPDF()
     {
-        // $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
-        // $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
-        // $pdf->setOption('enable-local-file-access', true);
-        // return $pdf->stream();
+        $data = DataResultCluster::where('alamat_pelanggan_result', request()->desa)->get();
+        $pdf = PDF::loadView('content.hasil_data.pdf', compact('data'));
+        $pdf->add_info('Title', 'Data Penduduk '.request()->desa);
+        // return view('content.hasil_data.pdf', compact('data'));
+        return $pdf->stream();
     }
 
     public function exportPDFPLN()
     {
-        // $data = DataResultCluster::get()->sortBy('alamat_pelanggan_result')->values();
-        // $pdf = PDF::loadView('content.hasil_data.pdf_pln', compact('data'));
-        // $pdf->setOption('enable-local-file-access', true);
-        // return $pdf->stream();
+        $data = DataResultCluster::where('alamat_pelanggan_result', request()->desa)->get();
+        $pdf = PDF::loadView('content.hasil_data.pdf_pln', compact('data'));
+        $pdf->add_info('Title', 'Data Pelanggan '.request()->desa);
+        // return view('content.hasil_data.pdf_pln', compact('data'));
+        return $pdf->stream();
     }
 }
