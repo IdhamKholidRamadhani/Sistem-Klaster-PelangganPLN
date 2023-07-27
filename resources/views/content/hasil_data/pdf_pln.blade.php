@@ -33,7 +33,7 @@
     </style>
 </head>
 
-<body>
+{{-- <body>
     <div>
         <div style="text-align: center;">
             <h3>DAFTAR PELANGGAN PENERIMA LISTRIK SUBSIDI & NON SUBSIDI</h3>
@@ -66,6 +66,45 @@
                         <td>{{ $d->alamat_pelanggan_result }}</td>
                         <td>{{ $d->kategori_result }}</td>
                     </tr>
+                @endforeach
+        </table>
+    </div>
+</body> --}}
+
+<body>
+    <div>
+        <div style="text-align: center;">
+            <h3>DAFTAR PELANGGAN PENERIMA LISTRIK SUBSIDI & NON SUBSIDI</h3>
+            <h5>PLN UNIT LAYANAN PELANGGAN KEBUMEN</h5>
+            <p style="font-size: 11px;">Jl. Tentara Pelajar No.19, Panggel, Panjer, Kecamatan Kebumen, Kabupaten Kebumen, Jawa Tengah 54312</p>
+            <p style="font-size: 11px;">Diambil pada tanggal {{ date('d-m-Y') }}.</p>
+        </div>
+        <hr style="double">
+        <table id="pelanggan">
+            <tr>
+            <th>#</th>
+            <th>ID Pel</th>
+            <th>Nama</th>
+            <th>Tarif</th>
+            <th>Daya</th>
+            <th>Alamat</th>
+            <th>Kategori</th>
+            </tr>
+
+            @if (!request()->desa)
+                <td colspan="11" style="text-align:center;">Tidak Ada Data Yang Dipilih</td>
+            @endif
+            @php $i=1 @endphp
+            @foreach ($data as $d)
+                <tr>
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $d->no_pelanggan_result }}</td>
+                    <td>{{ $d->nama_pelanggan_result }}</td>
+                    <td style="width:40px;">{{ $d->tarif_pelanggan_result }}</td>
+                    <td>{{ $d->daya_pelanggan_result }}</td>
+                    <td>{{ $d->alamat_pelanggan_result }}</td>
+                    <td>{{ $d->kategori_result }}</td>
+                </tr>
                 @endforeach
         </table>
     </div>
