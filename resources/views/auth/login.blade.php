@@ -70,8 +70,10 @@
 
                 <button type="submit"
                     class="block w-full bg-gradient-to-tl from-purple-700 to-pink-500 py-2 rounded-2xl text-white font-semibold mb-2">Login</button>
-                <a href="/Register" type="button"
-                    class="block w-full rounded-2xl text-gray-500 text-sm mb-2 items-center text-center">Registrasi</a>
+                {{-- <a href="/Register" type="button"
+                    class="block w-full rounded-2xl text-gray-500 text-sm mb-2 items-center text-center">
+                    Registrasi
+                </a> --}}
             </form>
 
         </div>

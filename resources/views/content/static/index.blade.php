@@ -168,7 +168,7 @@
         <div
             class="mt-6 border-black/12.5 shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
             <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
-                <h6 class="font-sans text-sm font-semibold">Perbandingan Data Subsidi Setiap Desa</h6>
+                <h6 class="font-sans text-sm font-semibold">Diagram Penerima Bantuan Listrik Subsidi Kecamatan Petanahan</h6>
             </div>
             <div class="flex-auto p-4">
                 <div>
@@ -183,7 +183,7 @@
         <div
             class="mt-6 border-black/12.5 shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
             <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
-                <h6 class="font-sans text-sm font-semibold">Perbandingan Data Jenis Daya Pada Masing-Masing Desa</h6>
+                <h6 class="font-sans text-sm font-semibold">Diagram Jenis Daya Listrik Kecamatan Petanahan</h6>
             </div>
             <div class="flex-auto p-4">
                 <div>

@@ -82,3 +82,6 @@ Route::middleware(['auth','cekrole:dinsos,pln'])->group(function (){
 //test
 // Route::get('Test-Hasil-Klaster',[Kmedoids2Controller::class, 'kMedoid']);
 // Route::get('Test-MinMax',[Kmedoids2Controller::class, 'median']);
+
+// Route::get('View-Median',[KmedoidsController::class, 'median']);
+// Route::get('View-Hasil',[KmedoidsController::class, 'kMedoid']);
